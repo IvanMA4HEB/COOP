@@ -47,4 +47,12 @@ else:
     print('Недопустимое количество')
 
 
+storageNumber = range(1, 10)
+storageSum = int(999999999)
 
+productId = random.randint(1, 99999999)
+productName = str(input('Введите название товара:'))
+if len(productName) < 100:
+    print('Товар в наличии')
+else:
+    print('Такого товара нет')
