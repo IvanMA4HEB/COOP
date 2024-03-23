@@ -19,7 +19,7 @@ else:
     print('Error')
 
 
-
+# Данные менеджера
 manageName = str(input('Введите ваше имя:'))
 if len(manageName) > 600:
     print ("Вы превысили число допустимых символов!")
@@ -37,20 +37,21 @@ if (managePnum) < 999999999999:
     print("+7", (managePnum))
 else:
     print('Error')
-
+    
+#Оформление Заказа на площадке 
 zakazNumbers = random.randint(1, 99999999)
 zakazId = random.randint(1, 99999999)
 zakazSum = int(input('Введите кол-во товара:'))
 if (((zakazSum) < 1000000) & ((zakazSum) > 0)):
     print("Заказ оформлен")
 else:
-    
     print('Недопустимое количество')
 
-
+#Проверка товара на складе 
 storageNumber = range(1, 10)
 storageSum = int(999999999)
 
+# Проверка товара на маркетплейсе и его добавление 
 productId = random.randint(1, 99999999)
 productName = str(input('Введите название товара:'))
 if len(productName) < 100:
