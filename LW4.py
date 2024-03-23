@@ -1,4 +1,5 @@
 import random
+# Данные пользователя
 userName = str(input('Введите ваше имя:'))
 if len(userName) > 600:
     print ("Вы превысили число допустимых символов!")
