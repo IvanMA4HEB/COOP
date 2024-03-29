@@ -61,7 +61,7 @@ class Zakaz:
     zakazId = random.randint(1, 99999999)
     zakazSum = int(input('Введите кол-во товара:'))
     
-    def unit(self):
+    def __init__(self):
     #Оформление Заказа на площадке 
       self.zakazNumbers = random.randint(1, 99999999)
       self.zakazId = random.randint(1, 99999999)
@@ -78,7 +78,7 @@ class Sklad:
      def new_func():
          storageSum = int(999999999)
     
-     def unit(self):
+     def __init__(self):
     #Проверка товара на складе 
       self.storageNumber = range(1, 10)
       self.storageSum = int(999999999)
@@ -89,7 +89,7 @@ class Tovar:
     productId = random.randint(1, 99999999)
     productName = str(input('Введите название товара:'))
     
-def unit(self):    
+def __init__(self):    
 # Проверка товара на маркетплейсе и его добавление 
   self.productId = random.randint(1, 99999999)
   self.productName = str(input('Введите название товара:'))
