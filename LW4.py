@@ -5,7 +5,7 @@ class user:
     userId = random.randint(1, 99999999)
     Email  =  str (input("введите вашу почту:"))
     userPnum = int
-    
+    9
     def __init__(self):
         
         self.Name = str (input('Введите ваше имя:'))
@@ -16,7 +16,7 @@ class user:
             print ("Вы превысили число допустимых символов!")
         else:
             print ("Вы зарегистрированы")
-        self.userPnum = int(input("Введите номер телефона"))
+        self.userPnum = int(input("Введите номер телефона +7"))
         if (self.userPnum) < 999999999999:
             print("+7", (self.userPnum))
         else:
@@ -33,7 +33,7 @@ class manager:
     manageName = ""
     manageEmail = str(input('Введите ваше имя:'))
     manageId = random.randint(1, 99999999)
-    managePnum =  int(input("Введите номер телефона"))
+    managePnum =  int(input("Введите номер телефона +7"))
     
     def __init__(self):
         # Данные менеджера
@@ -56,7 +56,7 @@ class manager:
                   print('Error')
   
   
-class Zakaz:
+class zakaz:
     zakazNumbers = random.randint(1, 99999999)
     zakazId = random.randint(1, 99999999)
     zakazSum = int(input('Введите кол-во товара:'))
@@ -72,7 +72,7 @@ class Zakaz:
           print('Недопустимое количество')
 
 
-class Sklad:
+class storage:
      storageNumber =  range(1, 10)
      storageList = list('Видеокарта', 'Монитор', 'Дверь')
      def new_func():
@@ -85,7 +85,7 @@ class Sklad:
       self.storageList = list('Видеокарта', 'Монитор', 'Дверь')
 
 
-class Tovar:
+class product:
     productId = random.randint(1, 99999999)
     productName = str(input('Введите название товара:'))
     
