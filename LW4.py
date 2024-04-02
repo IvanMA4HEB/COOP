@@ -83,8 +83,8 @@ class zakaz:
     def __init__(self):
     #Оформление Заказа на площадке 
       self.check_zakazSum_length()
-      self.check_zakazId_length()
-      self.check_zakazNumbers_lenght()
+      self.zakazId = random.randint(1, 99999999)
+      self.zakazNumbers = random.randint(1, 99999999)
       
     def check_zakazSum_length(self):
             val = input("input Sum")
@@ -95,8 +95,6 @@ class zakaz:
              print("Заказ оформлен")
    
       
-
-
 class storage:
      storageNumber =  range(1, 10)
      storageList = ['Видеокарта', 'Монитор', 'Дверь']
@@ -104,8 +102,8 @@ class storage:
     
      def __init__(self):
     #Проверка товара на складе 
-      self.check_storageNum_length()
-      self.check_storageList_length()
+      self.storageNum = range(1, 10)
+      self.storageList = ['Видеокарта', 'Монитор', 'Дверь']
       self.check_storageSum_lenght()
       
 def check_storageSum_length(self):
@@ -123,7 +121,7 @@ class product:
     
 def __init__(self):
 # Проверка товара на маркетплейсе и его добавление 
-  self.check_productId_length()
+  self.productId = random.randint(1, 99999999)
   self.check_productName_length()
 
 def check_productName_length(self):
