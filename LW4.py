@@ -103,7 +103,6 @@ class storage:
      storageSum = int(999999999)
     
      def __init__(self):
-      self.check_name_length()
     #Проверка товара на складе 
       self.check_storageNum_length()
       self.check_storageList_length()
@@ -123,7 +122,6 @@ class product:
     productName = ""
     
 def __init__(self):
-  self.check_name_length()
 # Проверка товара на маркетплейсе и его добавление 
   self.check_productId_length()
   self.check_productName_length()
