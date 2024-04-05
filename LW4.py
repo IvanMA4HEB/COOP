@@ -6,7 +6,7 @@ class user:
     Email  =  "введите вашу почту:"
     userPnum = 0
     
-    def __init__(self):
+    def init(self):
         self.check_name_length()
         self.check_Email_length()
         self.check_userPnum_length()
@@ -44,7 +44,7 @@ class manager:
     ManageId = random.randint(1, 99999999)
     managePnum =  0
     
-    def __init__(self):
+    def init(self):
         self.check_ManageName_length()
         self.check_ManageEmail_length()
         self.check_ManagePnum_length()
@@ -81,7 +81,7 @@ class zakaz:
     zakazId = random.randint(1, 99999999)
     zakazSum = 0
     
-    def __init__(self):
+    def init(self):
     #Оформление Заказа на площадке 
       self.check_zakazSum_length()
       self.zakazId = random.randint(1, 99999999)
@@ -98,10 +98,10 @@ class zakaz:
       
 class storage:
      storageNumber =  range(1, 10)
-     storageList = ['Видеокарта', 'Монитор', 'Дверь']
+     storageList = ['Видеокарта', 'Монитор', 'Клавиатура']
      storageSum = int(999999999)
     
-     def __init__(self):
+     def init(self):
     #Проверка товара на складе 
       self.storageNum = range(1, 10)
       self.storageList = ['Видеокарта', 'Монитор', 'Дверь']
@@ -119,8 +119,13 @@ def check_storageSum_length(self):
 class product:
     productId = random.randint(1, 99999999)
     productName = ""
+    productlist = ['Монитор', 'Системный блок', 'Клавиатура']
+    #Список товара 
+    #productlist.append('Монитор')
+    #productlist.append('Системный блок')
+    #productlist.append('видеокарта')
     
-def __init__(self):
+def init(self):
 # Проверка товара на маркетплейсе и его добавление 
   self.productId = random.randint(1, 99999999)
   self.check_productName_length()
