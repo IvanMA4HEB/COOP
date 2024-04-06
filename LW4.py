@@ -98,13 +98,13 @@ class zakaz:
       
 class storage:
      storageNumber =  range(1, 10)
-     storageList = ['Видеокарта', 'Монитор', 'Клавиатура']
+     storageList = ['Системный блок', 'Микрофон', 'Монитор', 'Клавиатура', 'Процессор', 'Видеокарта']
      storageSum = int(999999999)
     
      def init(self):
     #Проверка товара на складе 
       self.storageNum = range(1, 10)
-      self.storageList = ['Видеокарта', 'Монитор', 'Дверь']
+      self.storageList = ['Системный блок', 'Микрофон', 'Монитор', 'Клавиатура', 'Процессор', 'Видеокарта']
       self.check_storageSum_lenght()
       
 def check_storageSum_length(self):
@@ -129,6 +129,7 @@ def init(self):
 # Проверка товара на маркетплейсе и его добавление 
   self.productId = random.randint(1, 99999999)
   self.check_productName_length()
+  self.productList = ['Монитор', 'Системный блок', 'Клавиатура']
 
 def check_productName_length(self):
     val = input("input Name")
