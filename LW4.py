@@ -75,26 +75,6 @@ class manager:
              self.ManagePnum = val
              print("Вы зарегистрированы")    
   
-  
-class zakaz:
-    zakazNumbers = random.randint(1, 99999999)
-    zakazId = random.randint(1, 99999999)
-    zakazSum = 0
-    
-    def init(self):
-    #Оформление Заказа на площадке 
-      self.check_zakazSum_length()
-      self.zakazId = random.randint(1, 99999999)
-      self.zakazNumbers = random.randint(1, 99999999)
-      
-    def check_zakazSum_length(self):
-            val = input("input Sum")
-            if len(val) > 1000000:
-                print("Вы привысили допустимое количество товара!")
-            else:
-             self.zakazSum = val
-             print("Заказ оформлен")
-   
       
 class storage:
      storageNumber =  range(1, 10)
@@ -119,7 +99,7 @@ def check_storageSum_length(self):
 class product:
     productId = random.randint(1, 99999999)
     productName = ""
-    productlist = ['Монитор', 'Системный блок', 'Клавиатура']
+    productlist = []
     #Список товара 
     #productlist.append('Монитор')
     #productlist.append('Системный блок')
@@ -129,12 +109,46 @@ def init(self):
 # Проверка товара на маркетплейсе и его добавление 
   self.productId = random.randint(1, 99999999)
   self.check_productName_length()
-  self.productList = ['Монитор', 'Системный блок', 'Клавиатура']
+  self.productList = []
 
 def check_productName_length(self):
     val = input("input Name")
-    if len(val) > 1000000:
-        print("Вы привысили допустимое количество товара!")
+    if (len(val) < 1000000) & (val == (self.storageList)):
+        print("Вы добавили товар в корзину")
+        self.productList.append(val)
     else:
         self.productName = val
-        print("Заказ оформлен")
+        print("Недопустимое значение!")
+        
+class zakaz:
+    zakazNumbers = random.randint(1, 99999999)
+    zakazId = random.randint(1, 99999999)
+    zakazSum = 0
+    zakazList = []
+    
+    def init(self):
+    #Оформление Заказа на площадке 
+      self.check_zakazSum_length()
+      self.zakazId = random.randint(1, 99999999)
+      self.zakazNumbers = random.randint(1, 99999999)
+      self.zakazList = []
+      self.confirm_zakazList()
+      
+    def check_zakazSum_length(self):
+            val = input("input Sum")
+            if len(val) > 1000000:
+                print("Вы привысили допустимое количество товара!")
+            else:
+             self.zakazSum = val
+             print("Заказ оформлен")
+             
+    def confirm_zakazList(self):
+        val = input('Для подтверждения заказа введите "1", для отмены "0"')
+        if val == 1:
+            self.zakazList = list(self.productList)
+            print('Заказ подтверждён')
+        elif val == 0:
+            print('Заказ отменён')
+        else:
+            self.zakazList = val
+            print('Ошибка!')
