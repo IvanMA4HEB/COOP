@@ -108,10 +108,10 @@ class product:
 def init(self):
 # Проверка товара на маркетплейсе и его добавление 
   self.productId = random.randint(1, 99999999)
-  self.check_productName_length()
+  self.front_typing_include_list()
   self.productList = []
 
-def check_productName_length(self):
+def front_typing_include_list(self):
     val = input("input Name")
     if (len(val) < 1000000) & (val == (self.storageList)):
         print("Вы добавили товар в корзину")
