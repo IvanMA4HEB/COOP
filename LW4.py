@@ -6,7 +6,7 @@ class user:
     Email  =  "введите вашу почту:"
     userPnum = 0
     
-    def init(self):
+    def __init__(self):
         self.check_name_length()
         self.check_Email_length()
         self.check_userPnum_length()
@@ -44,7 +44,7 @@ class manager:
     ManageId = random.randint(1, 99999999)
     managePnum =  0
     
-    def init(self):
+    def __init__(self):
         self.check_ManageName_length()
         self.check_ManageEmail_length()
         self.check_ManagePnum_length()
@@ -75,13 +75,38 @@ class manager:
              self.ManagePnum = val
              print("Вы зарегистрированы")    
   
-      
+class product:
+    productId = random.randint(1, 99999999)
+    productName = ""
+    productlist = []
+    Nameproduct:str = "Монитор"
+    id: int = 1
+    Nameproduct:str = "Клавиатура"
+    id: int = 2   
+    
+    def front_typing_include_list(self):
+            val = input("input Name")
+            if (len(val) < 1000000) & (val == (self.storageList)):
+                print("Вы добавили товар в корзину")
+                self.productList.append(val)
+            else:
+                self.productName = val
+                print("Недопустимое значение!") #Список товара 
+    #productlist.append('Монитор')
+    #productlist.append('Системный блок')
+    #productlist.append('видеокарта')
+    
 class storage:
+     #StorageProduct = []
+     StorageProduct = [ ("Монитор", 1),  ("Клавиатура", 2)]
      storageNumber =  range(1, 10)
      storageList = ['Системный блок', 'Микрофон', 'Монитор', 'Клавиатура', 'Процессор', 'Видеокарта']
+     storage1 = storage(1, storageList)
+     product1.front_typing_include_list()
+     storage1.check_storageSum_length()
      storageSum = int(999999999)
     
-     def init(self):
+     def __init__(self):
     #Проверка товара на складе 
       self.storageNum = range(1, 10)
       self.storageList = ['Системный блок', 'Микрофон', 'Монитор', 'Клавиатура', 'Процессор', 'Видеокарта']
@@ -95,30 +120,18 @@ def check_storageSum_length(self):
         self.storageSum = val
         print("Заказ оформлен")
         
-        
-class product:
-    productId = random.randint(1, 99999999)
-    productName = ""
-    productlist = []
     #Список товара 
     #productlist.append('Монитор')
     #productlist.append('Системный блок')
     #productlist.append('видеокарта')
     
-def init(self):
+def __init__(self):
 # Проверка товара на маркетплейсе и его добавление 
   self.productId = random.randint(1, 99999999)
   self.front_typing_include_list()
   self.productList = []
 
-def front_typing_include_list(self):
-    val = input("input Name")
-    if (len(val) < 1000000) & (val == (self.storageList)):
-        print("Вы добавили товар в корзину")
-        self.productList.append(val)
-    else:
-        self.productName = val
-        print("Недопустимое значение!")
+
         
 class zakaz:
     zakazNumbers = random.randint(1, 99999999)
@@ -126,7 +139,7 @@ class zakaz:
     zakazSum = 0
     zakazList = []
     
-    def init(self):
+    def __init__(self):
     #Оформление Заказа на площадке 
       self.check_zakazSum_length()
       self.zakazId = random.randint(1, 99999999)
