@@ -101,9 +101,6 @@ class storage:
      StorageProduct = [ ("Монитор", 1),  ("Клавиатура", 2)]
      storageNumber =  range(1, 10)
      storageList = ['Системный блок', 'Микрофон', 'Монитор', 'Клавиатура', 'Процессор', 'Видеокарта']
-     storage1 = storage(1, storageList)
-     product1.front_typing_include_list()
-     storage1.check_storageSum_length()
      storageSum = int(999999999)
     
      def __init__(self):
