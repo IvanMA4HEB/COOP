@@ -79,12 +79,19 @@ class product:
     productId = random.randint(1, 99999999)
     productName = ""
     productlist = []
-    Nameproduct:str = "Монитор"
+    productlist:str = "Монитор"
     id: int = 1
-    Nameproduct:str = "Клавиатура"
+    productlist:str = "Клавиатура"
     id: int = 2   
     
-    def front_typing_include_list(self):
+    def front_typing_productlist_list(self):
+            val = input("input name")
+            if val in storage.productlist:
+                print("Заказ добавлен")
+            else: 
+                self.productlist = val
+                print("Такого товара нет в наличии")
+    def __init__(self):
             val = input("input Name")
             if (len(val) < 1000000) & (val == (self.storageList)):
                 print("Вы добавили товар в корзину")
