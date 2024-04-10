@@ -75,66 +75,40 @@ class manager:
              self.ManagePnum = val
              print("Вы зарегистрированы")    
   
-class product:
+class Product:
     productId = random.randint(1, 99999999)
     productName = ""
-    productlist = []
-    productlist:str = "Монитор"
-    id: int = 1
-    productlist:str = "Клавиатура"
-    id: int = 2   
+    #product1 = product("Монитор")
+    #product2 = product("Клавиатура")
+    def __init__(self, name):
+        self.productId = random.randint(1, 99999999)
+        self.productName = name
     
-    def front_typing_productlist_list(self):
-            val = input("input name")
-            if val in storage.productlist:
-                print("Заказ добавлен")
-            else: 
-                self.productlist = val
-                print("Такого товара нет в наличии")
-    def __init__(self):
-            val = input("input Name")
-            if (len(val) < 1000000) & (val == (self.storageList)):
-                print("Вы добавили товар в корзину")
-                self.productList.append(val)
-            else:
-                self.productName = val
-                print("Недопустимое значение!") #Список товара 
-    #productlist.append('Монитор')
-    #productlist.append('Системный блок')
-    #productlist.append('видеокарта')
-    
-class storage:
-     #StorageProduct = []
-     StorageProduct = [ ("Монитор", 1),  ("Клавиатура", 2)]
-     storageNumber =  range(1, 10)
-     storageList = ['Системный блок', 'Микрофон', 'Монитор', 'Клавиатура', 'Процессор', 'Видеокарта']
-     storageSum = int(999999999)
-    
-     def __init__(self):
-    #Проверка товара на складе 
-      self.storageNum = range(1, 10)
-      self.storageList = ['Системный блок', 'Микрофон', 'Монитор', 'Клавиатура', 'Процессор', 'Видеокарта']
-      self.check_storageSum_lenght()
-      
-def check_storageSum_length(self):
-    val = input("input Sum")
-    if len(val) > 1000000:
-        print("Вы привысили допустимое количество товара!")
-    else:
-        self.storageSum = val
-        print("Заказ оформлен")
         
-    #Список товара 
-    #productlist.append('Монитор')
-    #productlist.append('Системный блок')
-    #productlist.append('видеокарта')
-    
-def __init__(self):
-# Проверка товара на маркетплейсе и его добавление 
-  self.productId = random.randint(1, 99999999)
-  self.front_typing_include_list()
-  self.productList = []
 
+class Storage:
+    storageList = []
+    #storage = storage()
+    
+    def __init__(self):
+        self.storageList = []
+        #storage.add_product(product1)
+        #storage.add_product(product2)
+        #storage.display_products()
+    
+    def add_product(self, product):
+        self.storageList.append(product)
+        
+    def display_products(self):
+        for product in self.storageList:
+            print(f'Product ID: {product.productId}, Name: {product.productName}')
+product1 = Product("Монитор")
+product2 = Product("Клавиатура")
+
+storage = Storage()
+storage.add_product(product1)
+storage.add_product(product2)
+storage.display_products()
 
         
 class zakaz:
