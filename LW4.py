@@ -78,8 +78,6 @@ class manager:
 class Product:
     productId = random.randint(1, 99999999)
     productName = ""
-    #product1 = product("Монитор")
-    #product2 = product("Клавиатура")
     def __init__(self, name):
         self.productId = random.randint(1, 99999999)
         self.productName = name
@@ -88,26 +86,28 @@ class Product:
 
 class Storage:
     storageList = []
-    #storage = storage()
     
     def __init__(self):
         self.storageList = []
-        #storage.add_product(product1)
-        #storage.add_product(product2)
-        #storage.display_products()
     
-    def add_product(self, product):
-        self.storageList.append(product)
+    def add_product(self, product, quantity = 1):
+        for stored_product, stored_quantity in self.storageList:
+            if stored_product.productId == product.productId:
+                stored_quantity += quantity
+                return
+            self.storageList.append(product, quantity)
         
     def display_products(self):
-        for product in self.storageList:
-            print(f'Product ID: {product.productId}, Name: {product.productName}')
+        for stored_product, quantity in self.storageList:
+            print(f'Product ID: {stored_product.productId}, Name: {stored_product.productName}, Quantity: {quantity}')
+
 product1 = Product("Монитор")
 product2 = Product("Клавиатура")
 
 storage = Storage()
 storage.add_product(product1)
 storage.add_product(product2)
+storage.add_product(product1)
 storage.display_products()
 
         
