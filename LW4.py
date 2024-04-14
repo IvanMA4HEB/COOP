@@ -91,15 +91,14 @@ class Storage:
         self.storageList = []
     
     def add_product(self, product, quantity = 1):
-        for stored_product, stored_quantity in self.storageList:
-            if stored_product.productId == product.productId:
-                stored_quantity += quantity
-                return
-            self.storageList.append(product, quantity)
-        
+        if product in self.storageList:
+            self.storageList[product] += quantity
+        else:
+            self.storageList[product] = quantity
+
     def display_products(self):
-        for stored_product, quantity in self.storageList:
-            print(f'Product ID: {stored_product.productId}, Name: {stored_product.productName}, Quantity: {quantity}')
+        for product, quantity in self.storageList.items():
+            print(f'Product ID: {product.productId}, Name: {product.productName}, Quantity: {quantity}')
 
 product1 = Product("Монитор")
 product2 = Product("Клавиатура")
