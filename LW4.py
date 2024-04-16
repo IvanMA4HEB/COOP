@@ -78,35 +78,50 @@ class manager:
 class Product:
     productId = random.randint(1, 99999999)
     productName = ""
+    
     def __init__(self, name):
+        
         self.productId = random.randint(1, 99999999)
         self.productName = name
     
         
 
 class Storage:
-    storageList = []
+    storageList = {}
+    storageName = {}
     
     def __init__(self):
-        self.storageList = []
+        self.storageList = {}
+        self.storageName = {}
     
-    def add_product(self, product, quantity = 1):
-        if product in self.storageList:
-            self.storageList[product] += quantity
+    def add_product(self, product, quantity = 0):
+        for product.productId in self.storageList:
+            self.storageList[product.productId] += quantity
         else:
-            self.storageList[product] = quantity
+            self.storageList[product.productId] = quantity
+
+            
+            
+    def add_name(self, name, quantity = 0):
+        if name.productName in self.storageName:
+            self.storageName[name.productName] += quantity
+        else:
+            self.storageName[name.productName] = quantity
 
     def display_products(self):
+        for name in self.storageName.items():
+            print(f'Name: {name}')
         for product, quantity in self.storageList.items():
-            print(f'Product ID: {product.productId}, Name: {product.productName}, Quantity: {quantity}')
+            print(f'Product ID: {product}, Name: {name}, Quantity: {quantity}')
 
-product1 = Product("Монитор")
-product2 = Product("Клавиатура")
+product1 = Product("Монитор" )
+product2 = Product("Клавиатура" )
 
 storage = Storage()
-storage.add_product(product1)
-storage.add_product(product2)
-storage.add_product(product1)
+storage.add_name(product1)
+storage.add_product(product1,10)
+storage.add_name(product2)
+storage.add_product(product2,100)
 storage.display_products()
 
         
