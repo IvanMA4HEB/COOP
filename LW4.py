@@ -88,11 +88,9 @@ class Product:
 
 class Storage:
     storageList = {}
-    storageName = {}
     
     def __init__(self):
         self.storageList = {}
-        self.storageName = {}
     
     def add_product(self, product, quantity = 0):
         if product.productId in self.storageList:
@@ -103,30 +101,15 @@ class Storage:
     def display_products(self):
         for product, quantity in self.storageList.items():
             print(f'Product ID: {product}, Quantity: {quantity}')
-    
-    def add_name(self, name, quantity = 0):
-        if name.productName in self.storageName:
-            self.storageName[name.productName] += quantity
-        else:
-            self.storageName[name.productName] = quantity
-            
-    def show_products(self):
-        for name in self.storageName.items():
-            print(f"Name: {name}")
 
 product1 = Product("Монитор")
 product2 = Product("Клавиатура")
 
 storage = Storage()
-storage.add_name(product1, 10)
 storage.add_product(product1, 10)
-storage.add_name(product2, 100)
 storage.add_product(product2, 100)
 storage.add_product(product1, 40)
 storage.display_products()
-storage.show_products()
-
-
 
 
         
@@ -162,3 +145,4 @@ class zakaz:
         else:
             self.zakazList = val
             print('Ошибка!')
+
