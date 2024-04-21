@@ -136,15 +136,15 @@ class Zakaz:
     
     def __init__(self):
     #Оформление Заказа на площадке 
+      self.add_zakazProducts()
       self.check_zakazSum_length()
       self.zakazId = random.randint(1, 99999999)
       self.zakazNumbers = random.randint(1, 99999999)
       self.zakazList = {}
-      self.zakazProducts = ''
       
     def add_zakazProducts(self):
         val = input('Input Product name')
-        if val in self.storageList:
+        if val == Product.productName:
             self.zakazProducts = val
             print('Товар добавлен')
         else:
@@ -171,5 +171,3 @@ class Zakaz:
 
 zakaz = Zakaz()
 zakaz.add_zakazProducts
-zakaz.check_zakazSum_length
-zakaz.confirm_zakazList
