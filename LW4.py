@@ -1,16 +1,18 @@
 import random
 # Данные пользователя
-class user:
+class User:
     Name = ""
     userId = random.randint(1, 99999999)
-    Email  =  "введите вашу почту:"
+    Email  =  ""
     userPnum = 0
+    userIdList = {}
     
     def __init__(self):
         self.check_name_length()
         self.check_Email_length()
         self.check_userPnum_length()
         self.userId = random.randint(1, 99999999)
+        self.userIdList = {}
         
     def check_name_length(self):
         val = input("input name:")
@@ -35,10 +37,18 @@ class user:
         else:
             self.userPnum = val
             print("Вы зарегистрированы")
+            print(f"User ID: {self.userId}")
         #self - ключевая команда ссылающая экзампляр класса(Элемент класса)
+    
 
 
-class manager:
+
+user = User()
+user.check_name_length
+user.check_Email_length
+user.check_userPnum_length
+
+class Manager:
     ManageName = ""
     ManageEmail = ""
     ManageId = random.randint(1, 99999999)
@@ -113,19 +123,18 @@ storage.display_products()
 
 
         
-class zakaz:
+class Zakaz:
     zakazNumbers = random.randint(1, 99999999)
     zakazId = random.randint(1, 99999999)
     zakazSum = 0
-    zakazList = []
+    zakazList = {}
     
     def __init__(self):
     #Оформление Заказа на площадке 
       self.check_zakazSum_length()
       self.zakazId = random.randint(1, 99999999)
       self.zakazNumbers = random.randint(1, 99999999)
-      self.zakazList = []
-      self.confirm_zakazList()
+      self.zakazList = {}
       
     def check_zakazSum_length(self):
             val = input("input Sum")
