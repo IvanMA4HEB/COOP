@@ -5,14 +5,12 @@ class User:
     userId = random.randint(1, 99999999)
     Email  =  ""
     userPnum = 0
-    userIdList = {}
     
     def __init__(self):
         self.check_name_length()
         self.check_Email_length()
         self.check_userPnum_length()
         self.userId = random.randint(1, 99999999)
-        self.userIdList = {}
         
     def check_name_length(self):
         val = input("input name:")
@@ -83,7 +81,13 @@ class Manager:
                 print ("Вы превысили число допустимых символов!")
             else:
              self.ManagePnum = val
-             print("Вы зарегистрированы")    
+             print("Вы зарегистрированы")  
+             print(f"Manager ID: {self.ManageId}")
+             
+manager = Manager()
+manager.check_ManageName_length
+manager.check_ManageEmail_length
+manager.check_ManagePnum_length
   
 class Product:
     productId = random.randint(1, 99999999)
