@@ -132,6 +132,7 @@ class Zakaz:
     zakazId = random.randint(1, 99999999)
     zakazSum = 0
     zakazList = {}
+    zakazProducts = ''
     
     def __init__(self):
     #Оформление Заказа на площадке 
@@ -139,7 +140,16 @@ class Zakaz:
       self.zakazId = random.randint(1, 99999999)
       self.zakazNumbers = random.randint(1, 99999999)
       self.zakazList = {}
+      self.zakazProducts = ''
       
+    def add_zakazProducts(self):
+        val = input('Input Product name')
+        if val in self.storageList:
+            self.zakazProducts = val
+            print('Товар добавлен')
+        else:
+            print('Товара нет на складе')
+    
     def check_zakazSum_length(self):
             val = input("input Sum")
             if len(val) > 1000000:
@@ -159,3 +169,7 @@ class Zakaz:
             self.zakazList = val
             print('Ошибка!')
 
+zakaz = Zakaz()
+zakaz.add_zakazProducts
+zakaz.check_zakazSum_length
+zakaz.confirm_zakazList
