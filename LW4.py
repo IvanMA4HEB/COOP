@@ -42,9 +42,9 @@ class User:
 
 
 user = User()
-user.check_name_length
-user.check_Email_length
-user.check_userPnum_length
+user.check_name_length()
+user.check_Email_length()
+user.check_userPnum_length()
 
 class Manager:
     ManageName = ""
