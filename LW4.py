@@ -48,47 +48,50 @@ user.check_userPnum_length()
 user.display_user_info()
 
 class Manager:
-    ManageName = ""
-    ManageEmail = ""
-    ManageId = random.randint(1, 99999999)
-    managePnum =  0
+    manageName = ""
+    manageEmail = ""
+    manageId = random.randint(1, 99999999)
+    managePnum = ''
     
     def __init__(self):
-        self.check_ManageName_length()
-        self.check_ManageEmail_length()
-        self.check_ManagePnum_length()
-        self.ManageId = random.randint(1, 99999999)
+        self.manageId = random.randint(1, 99999999)
+        self.manageName = ''
+        self.manageEmail = ''
+        self.managePnum = ''
         # Данные менеджера
                      
-    def check_ManageName_length(self):
-         val = input("input Manage name:")
+    def check_manageName_length(self):
+         val = input("Введите имя менеджера:")
          if len(val) > 600:
              print ("Вы превысили число допустимых символов!")
          else:
-             self.ManageName = val
-             print ("Вы зарегистрированы")
+             self.manageName = val
                 
-    def check_ManageEmail_length(self):
-          val = input("input Manage Email:")
+    def check_manageEmail_length(self):
+          val = input("Введите Email:")
           if len(val) > 360:
             print ("Вы превысили число допустимых символов!")
           else:
-             self.ManageEmail = val
-             print("Вы зарегистрированы")
+             self.manageEmail = val
                 
-    def check_ManagePnum_length(self):
-            val = input("input Pnum:")
+    def check_managePnum_length(self):
+            val = input("Введите номер телефрна +7:")
             if len(val) > 20:
                 print ("Вы превысили число допустимых символов!")
             else:
-             self.ManagePnum = val
-             print("Вы зарегистрированы")  
-             print(f"Manager ID: {self.ManageId}")
+             self.managePnum = val
+             
+    def display_manager_info(self):
+        print(f"Manager ID: {self.manageId}")
+        print(f"Имя менеджера: {self.manageName}")
+        print(f"Email: {self.manageEmail}")
+        print("Номер телефона: +7", (self.managePnum))
              
 manager = Manager()
-manager.check_ManageName_length
-manager.check_ManageEmail_length
-manager.check_ManagePnum_length
+manager.check_manageName_length()
+manager.check_manageEmail_length()
+manager.check_managePnum_length()
+manager.display_manager_info()
   
 class Product:
     productId = random.randint(1, 99999999)
