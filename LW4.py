@@ -1,50 +1,51 @@
 import random
 # Данные пользователя
+import random
+
 class User:
-    Name = ""
-    userId = random.randint(1, 99999999)
-    Email  =  ""
-    userPnum = 0
+    userName = ""
+    userId = random.randint(1, 999999)
+    userEmail = ""
+    userPnum = ""
     
     def __init__(self):
-        self.check_name_length()
-        self.check_Email_length()
-        self.check_userPnum_length()
-        self.userId = random.randint(1, 99999999)
-        
-    def check_name_length(self):
-        val = input("input name:")
+        self.userName = ""
+        self.userId = random.randint(1, 999999)
+        self.userEmail = ""
+        self.userPnum = ""
+
+    def check_userName_length(self):
+        val = input("Введите имя пользователя: ")
         if len(val) > 600:
-            print ("Вы превысили число допустимых символов!")
+            print("Вы превысили число допустимых символов!")
         else:
-            self.Name = val
-            print ("Вы зарегистрированы")
-            
-    def check_Email_length(self):
-        val = input("input Email:")
+            self.userName = val
+
+    def check_userEmail_length(self):
+        val = input("Введите Email: ")
         if len(val) > 360:
-             print ("Вы превысили число допустимых символов!")
+            print("Вы превысили число допустимых символов!")
         else:
-            self.Email = val
-            print("Вы зарегистрированы")
-            
+            self.userEmail = val
+
     def check_userPnum_length(self):
-        val = input("input Pnum:")
+        val = input("Введите номер телефона +7: ")
         if len(val) > 20:
-             print ("Вы превысили число допустимых символов!")
+            print("Некорректный номер телефона!")
         else:
             self.userPnum = val
-            print("Вы зарегистрированы")
-            print(f"User ID: {self.userId}")
-        #self - ключевая команда ссылающая экзампляр класса(Элемент класса)
-    
 
-
+    def display_user_info(self):
+        print(f"User ID: {self.userId}")
+        print(f"Имя пользователя: {self.userName}")
+        print(f"Email: {self.userEmail}")
+        print("Номер телефона: +7", (self.userPnum))
 
 user = User()
-user.check_name_length()
-user.check_Email_length()
+user.check_userName_length()
+user.check_userEmail_length()
 user.check_userPnum_length()
+user.display_user_info()
 
 class Manager:
     ManageName = ""
