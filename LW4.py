@@ -46,53 +46,6 @@ user.check_userEmail_length()
 user.check_userPnum_length()
 user.display_user_info()
 
-class Manager:
-    manageName = ""
-    manageEmail = ""
-    manageId = random.randint(1, 99999999)
-    managePnum = ''
-    
-    def __init__(self):
-        self.manageId = random.randint(1, 99999999)
-        self.manageName = ''
-        self.manageEmail = ''
-        self.managePnum = ''
-        # Данные менеджера
-                     
-    def check_manageName_length(self):
-         val = input("Введите имя менеджера:")
-         if len(val) > 600:
-             print ("Вы превысили число допустимых символов!")
-         else:
-             self.manageName = val
-                
-    def check_manageEmail_length(self):
-          val = input("Введите Email:")
-          if len(val) > 360:
-            print ("Вы превысили число допустимых символов!")
-          else:
-             self.manageEmail = val
-                
-    def check_managePnum_length(self):
-            val = input("Введите номер телефрна +7:")
-            if len(val) > 20:
-                print ("Вы превысили число допустимых символов!")
-            else:
-             self.managePnum = val
-             
-    def display_manager_info(self):
-        print(f"Manager ID: {self.manageId}")
-        print(f"Имя менеджера: {self.manageName}")
-        print(f"Email: {self.manageEmail}")
-        print("Номер телефона: +7", (self.managePnum))
-             
-manager = Manager()
-manager.check_manageName_length()
-manager.check_manageEmail_length()
-manager.check_managePnum_length()
-manager.display_manager_info()
-  
-import random
 
 class Product:
     productId = random.randint(1, 99999999)
@@ -177,4 +130,67 @@ order = Order()
 order.add_orderProducts()
 order.check_orderSum()
 order.display_order_info()
-   
+
+class Manager:
+    manageName = ""
+    manageEmail = ""
+    manageId = random.randint(1, 99999999)
+    managePnum = ''
+    
+    def __init__(self):
+        self.manageId = random.randint(1, 99999999)
+        self.manageName = ''
+        self.manageEmail = ''
+        self.managePnum = ''
+        # Данные менеджера
+                     
+    def check_manageName_length(self):
+         val = input("Введите имя менеджера:")
+         if len(val) > 600:
+             print ("Вы превысили число допустимых символов!")
+         else:
+             self.manageName = val
+                
+    def check_manageEmail_length(self):
+          val = input("Введите Email:")
+          if len(val) > 360:
+            print ("Вы превысили число допустимых символов!")
+          else:
+             self.manageEmail = val
+                
+    def check_managePnum_length(self):
+            val = input("Введите номер телефрна +7:")
+            if len(val) > 20:
+                print ("Вы превысили число допустимых символов!")
+            else:
+             self.managePnum = val
+             
+    def display_manager_info(self):
+        print(f"Manager ID: {self.manageId}")
+        print(f"Имя менеджера: {self.manageName}")
+        print(f"Email: {self.manageEmail}")
+        print("Номер телефона: +7", (self.managePnum))
+             
+manager = Manager()
+manager.check_manageName_length()
+manager.check_manageEmail_length()
+manager.check_managePnum_length()
+manager.display_manager_info()
+
+class Check:
+    def check_order(self):
+        print(f"Здравствуйте {manager.manageName}")
+        print(f'Пользователь: {user.userName}, Email: {user.userEmail}, Телефон: {user.userPnum}, оформил заказ:')
+        order.display_order_info()
+        val = int(input('Нужно ли заказать товар на склад? (1 - Да, 0 - Нет)'))
+        if val == (1):
+            add = int(input('Введите количество товара:'))
+            if add <= (0):
+                print('Недопустимое значение!!')
+                return 0
+            else:
+                print(f'Заказано {add} единиц товара')
+                confirm = int(input('Вы подтверждаете заказ пользователя? (1 - Да, 0 - Нет)'))
+
+check = Check()
+check.check_order()
