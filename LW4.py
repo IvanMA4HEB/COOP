@@ -1,6 +1,5 @@
 import random
 # Данные пользователя
-import random
 
 class User:
     userName = ""
@@ -93,12 +92,13 @@ manager.check_manageEmail_length()
 manager.check_managePnum_length()
 manager.display_manager_info()
   
+import random
+
 class Product:
     productId = random.randint(1, 99999999)
     productName = ""
     
     def __init__(self, name):
-        
         self.productId = random.randint(1, 99999999)
         self.productName = name
     
@@ -106,19 +106,24 @@ class Product:
 
 class Storage:
     storageList = {}
+    storageNames = []
+    storageQuan = []
     
     def __init__(self):
         self.storageList = {}
+        self.storageNames = []
     
     def add_product(self, product, quantity=0):
         if product.productId in self.storageList:
             self.storageList[product.productId][0] += quantity
         else:
             self.storageList[product.productId] = [quantity, product.productName]
+            self.storageNames.append(product.productName)
 
     def display_products(self):
         for product_id, data in self.storageList.items():
             print(f'Product ID: {product_id}, Product Name: {data[1]}, Quantity: {data[0]}')
+
 
 product1 = Product("Монитор")
 product2 = Product("Клавиатура")
@@ -128,50 +133,48 @@ storage.add_product(product1, 10)
 storage.add_product(product2, 100)
 storage.add_product(product1, 40)
 storage.display_products()
-
-
-        
-class Zakaz:
-    zakazNumbers = random.randint(1, 99999999)
-    zakazId = random.randint(1, 99999999)
-    zakazSum = 0
-    zakazList = {}
-    zakazProducts = ''
+     
+class Order:
+    orderNumber = random.randint(1, 99999999)
+    orderSum = ''
+    orderList = {}
+    orderProducts = ''
     
     def __init__(self):
     #Оформление Заказа на площадке 
-      self.add_zakazProducts()
-      self.check_zakazSum_length()
-      self.zakazId = random.randint(1, 99999999)
-      self.zakazNumbers = random.randint(1, 99999999)
-      self.zakazList = {}
+      self.orderProducts = ''
+      self.orderSum = ''
+      self.orderNumber = random.randint(1, 99999999)
       
-    def add_zakazProducts(self):
-        val = input('Input Product name')
-        if val == Product.productName:
-            self.zakazProducts = val
+    def add_orderProducts(self):
+        val = input('Введите название товара:')
+        if val in storage.storageNames:
+            self.orderProducts = val
             print('Товар добавлен')
         else:
             print('Товара нет на складе')
+            return self.add_orderProducts
     
-    def check_zakazSum_length(self):
-            val = input("input Sum")
-            if len(val) > 1000000:
-                print("Вы привысили допустимое количество товара!")
-            else:
-             self.zakazSum = val
-             print("Заказ оформлен")
-             
-    def confirm_zakazList(self):
-        val = input('Для подтверждения заказа введите "1", для отмены "0"')
-        if val == 1:
-            self.zakazList = list(self.productList)
-            print('Заказ подтверждён')
-        elif val == 0:
+    def check_orderSum(self):
+        val = int(input('Введите количество товара:'))
+        if val <= 1000000:
+            self.orderSum = val
+        else:
+            print('Такого количества товара нет!')
+            return self.check_orderSum()
+       
+    def display_order_info(self):
+        val = int(input('Вы подтверждаете заказ? (1 - Да, 0 - Нет)'))
+        if val == (1):
+            print('Заказ оформлен')
+            print(f"Номер заказа: {self.orderNumber}, Товары: {self.orderProducts}, Количество: {self.orderSum}")
+        elif val == (0):
             print('Заказ отменён')
         else:
-            self.zakazList = val
-            print('Ошибка!')
-
-zakaz = Zakaz()
-zakaz.add_zakazProducts
+            return self.display_order_info()    
+            
+order = Order()
+order.add_orderProducts()
+order.check_orderSum()
+order.display_order_info()
+   
