@@ -123,6 +123,7 @@ class Order:
             print(f"Номер заказа: {self.orderNumber}, Товары: {self.orderProducts}, Количество: {self.orderSum}")
         elif val == (0):
             print('Заказ отменён')
+            return 0
         else:
             return self.display_order_info()    
             
@@ -178,19 +179,76 @@ manager.check_managePnum_length()
 manager.display_manager_info()
 
 class Check:
-    def check_order(self):
-        print(f"Здравствуйте {manager.manageName}")
+    def order_info(self):
         print(f'Пользователь: {user.userName}, Email: {user.userEmail}, Телефон: {user.userPnum}, оформил заказ:')
-        order.display_order_info()
-        val = int(input('Нужно ли заказать товар на склад? (1 - Да, 0 - Нет)'))
+        print(f"Номер заказа: {order.orderNumber}, Товары: {order.orderProducts}, Количество: {order.orderSum}")
+        
+    def equ_prod(self):
+        equ = int(input('Введите кол-во товара:'))
+        if equ <= (0):
+            print('Недопустимое значение!')
+            return self.equ_prod()
+        elif equ >= (1):
+            print(f'{equ} единиц(-а) товара заказано(-а).')
+            self.storage_check()
+        else:
+            return self.equ_prod()
+    
+    def add_products_storage(self):
+        add = int(input('(1) - Заказать товар на склад, (2) - Вернуться назад'))
+        if add == (2):
+            self.order_info()
+            return self.storage_check()
+        elif add == (1):
+            self.equ_prod()
+        else:
+            return self.add_products_storage()
+        
+    def storage_check(self):
+        que = int(input('(1) - Подтвердить заказ, (2) - Просмотреть склад'))
+        if que == (1):
+            print(f'Заказ {order.orderNumber} подтверждён.')
+        elif que == (2):
+            storage.display_products()
+            self.add_products_storage()
+        else:
+            return self.storage_check()
+    
+    def equ_prod1(self):
+        equ = int(input('Введите кол-во товара:'))
+        if equ <= (0):
+            print('Недопустимое значение!')
+            return self.equ_prod1()
+        elif equ >= (1):
+            print(f'{equ} единиц(-а) товара заказано(-а).')
+            self.back_values()
+        else:
+            return self.equ_prod1()
+        
+    def back_values(self):
+        add = int(input('(1) - Заказать товар на склад, (2) - Вернуться назад'))
+        if add == (2):
+            self.values_confirm()
+        elif add == (1):
+            self.equ_prod1()
+        else:
+            return self.back_values()
+        
+    def values_confirm(self):
+        val = int(input('Для просмотра заказов введите (1), для просмотра товаров на складе введите (2)'))
         if val == (1):
-            add = int(input('Введите количество товара:'))
-            if add <= (0):
-                print('Недопустимое значение!!')
-                return 0
-            else:
-                print(f'Заказано {add} единиц товара')
-                confirm = int(input('Вы подтверждаете заказ пользователя? (1 - Да, 0 - Нет)'))
-
+            self.order_info()
+            self.storage_check()
+        elif val == (2):
+            storage.display_products()
+            self.back_values()
+        else:
+            return self.values_confirm()
+            
+        
+    def check_confirm(self):
+        print(f"Здравствуйте {manager.manageName}")
+        self.values_confirm()
+        
 check = Check()
-check.check_order()
+check.check_confirm()
