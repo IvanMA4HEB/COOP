@@ -1,5 +1,6 @@
 import random
 # Данные пользователя
+import sys
 
 class User:
     userName = ""
@@ -65,13 +66,14 @@ class Storage:
     def __init__(self):
         self.storageList = {}
         self.storageNames = []
+        self.storageQuan = []
     
     def add_product(self, product, quantity=0):
         if product.productId in self.storageList:
             self.storageList[product.productId][0] += quantity
+            self.storageQuan.append(quantity)
         else:
             self.storageList[product.productId] = [quantity, product.productName]
-            self.storageNames.append(product.productName)
 
     def display_products(self):
         for product_id, data in self.storageList.items():
@@ -120,10 +122,11 @@ class Order:
         val = int(input('Вы подтверждаете заказ? (1 - Да, 0 - Нет)'))
         if val == (1):
             print('Заказ оформлен')
+            print(f'User ID: {user.userId}, Имя заказчика: {user.userName}, Email: {user.userEmail}, Телефон: {user.userPnum}')
             print(f"Номер заказа: {self.orderNumber}, Товары: {self.orderProducts}, Количество: {self.orderSum}")
         elif val == (0):
             print('Заказ отменён')
-            return 0
+            sys.exit()
         else:
             return self.display_order_info()    
             
