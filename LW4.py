@@ -71,9 +71,9 @@ class Storage:
     def add_product(self, product, quantity=0):
         if product.productId in self.storageList:
             self.storageList[product.productId][0] += quantity
-            self.storageQuan.append(quantity)
         else:
             self.storageList[product.productId] = [quantity, product.productName]
+            self.storageNames.append(product.productName)
 
     def display_products(self):
         for product_id, data in self.storageList.items():
@@ -174,14 +174,7 @@ class Manager:
         print(f"Имя менеджера: {self.manageName}")
         print(f"Email: {self.manageEmail}")
         print("Номер телефона: +7", (self.managePnum))
-             
-manager = Manager()
-manager.check_manageName_length()
-manager.check_manageEmail_length()
-manager.check_managePnum_length()
-manager.display_manager_info()
-
-class Check:
+        
     def order_info(self):
         print(f'Пользователь: {user.userName}, Email: {user.userEmail}, Телефон: {user.userPnum}, оформил заказ:')
         print(f"Номер заказа: {order.orderNumber}, Товары: {order.orderProducts}, Количество: {order.orderSum}")
@@ -252,6 +245,10 @@ class Check:
     def check_confirm(self):
         print(f"Здравствуйте {manager.manageName}")
         self.values_confirm()
-        
-check = Check()
-check.check_confirm()
+             
+manager = Manager()
+manager.check_manageName_length()
+manager.check_manageEmail_length()
+manager.check_managePnum_length()
+manager.display_manager_info()
+manager.check_confirm()
