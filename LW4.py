@@ -60,20 +60,23 @@ class Product:
 
 class Storage:
     storageList = {}
-    storageNames = []
-    storageQuan = []
+    storageNames = {}
     
     def __init__(self):
         self.storageList = {}
-        self.storageNames = []
-        self.storageQuan = []
+        self.storageNames = {}
     
     def add_product(self, product, quantity=0):
         if product.productId in self.storageList:
             self.storageList[product.productId][0] += quantity
         else:
             self.storageList[product.productId] = [quantity, product.productName]
-            self.storageNames.append(product.productName)
+            
+    def add_product2(self, product, quantity = 0):
+        if product.productName in self.storageNames:
+            self.storageNames[product.productName] += quantity
+        else:
+            self.storageNames[product.productName] = quantity
 
     def display_products(self):
         for product_id, data in self.storageList.items():
@@ -87,6 +90,9 @@ storage = Storage()
 storage.add_product(product1, 10)
 storage.add_product(product2, 100)
 storage.add_product(product1, 40)
+storage.add_product2(product1, 10)
+storage.add_product2(product2, 100)
+storage.add_product2(product1, 40)
 storage.display_products()
      
 class Order:
@@ -174,77 +180,62 @@ class Manager:
         print(f"Имя менеджера: {self.manageName}")
         print(f"Email: {self.manageEmail}")
         print("Номер телефона: +7", (self.managePnum))
-        
-    def order_info(self):
-        print(f'Пользователь: {user.userName}, Email: {user.userEmail}, Телефон: {user.userPnum}, оформил заказ:')
-        print(f"Номер заказа: {order.orderNumber}, Товары: {order.orderProducts}, Количество: {order.orderSum}")
-        
-    def equ_prod(self):
-        equ = int(input('Введите кол-во товара:'))
-        if equ <= (0):
-            print('Недопустимое значение!')
-            return self.equ_prod()
-        elif equ >= (1):
-            print(f'{equ} единиц(-а) товара заказано(-а).')
-            self.storage_check()
-        else:
-            return self.equ_prod()
     
-    def add_products_storage(self):
-        add = int(input('(1) - Заказать товар на склад, (2) - Вернуться назад'))
-        if add == (2):
-            self.order_info()
-            return self.storage_check()
-        elif add == (1):
-            self.equ_prod()
+    def confirm_order(self):
+        con = int(input('(1) - Подтвердить заказ, (0) - Не подтверждать'))
+        if con == (0):
+            print('Заказ не подтверждён')
+            sys.exit()
+        elif con == (1):
+            print('Заказ подтверждён')
+            print(f'User ID: {user.userId}, Имя заказчика: {user.userName}, Email: {user.userEmail}, Телефон: {user.userPnum}')
+            print(f"Номер заказа: {self.orderNumber}, Товары: {self.orderProducts}, Количество: {self.orderSum}")
+            sys.exit()
         else:
-            return self.add_products_storage()
-        
-    def storage_check(self):
-        que = int(input('(1) - Подтвердить заказ, (2) - Просмотреть склад'))
-        if que == (1):
-            print(f'Заказ {order.orderNumber} подтверждён.')
-        elif que == (2):
-            storage.display_products()
-            self.add_products_storage()
-        else:
-            return self.storage_check()
+            return self.confirm_order()
     
-    def equ_prod1(self):
-        equ = int(input('Введите кол-во товара:'))
-        if equ <= (0):
+    def sum_products(self):
+        val = int(input('Введите количество товара:'))
+        if val <= (0):
             print('Недопустимое значение!')
-            return self.equ_prod1()
-        elif equ >= (1):
-            print(f'{equ} единиц(-а) товара заказано(-а).')
-            self.back_values()
+            return self.sum_products()
+        elif val > (0):
+            print(F'{val} единиц(-а) товара заказано на склад.')
+            self.confirm_order()
         else:
-            return self.equ_prod1()
-        
-    def back_values(self):
-        add = int(input('(1) - Заказать товар на склад, (2) - Вернуться назад'))
-        if add == (2):
-            self.values_confirm()
-        elif add == (1):
-            self.equ_prod1()
+            return self.sum_products()
+    
+    def order_storage(self):
+        sto = int(input('(1) - Заказать товар на склад, (0) - Отмена'))
+        if sto == (0):
+            sys.exit()
+        elif sto == (1):
+            self.sum_products()
         else:
-            return self.back_values()
-        
-    def values_confirm(self):
-        val = int(input('Для просмотра заказов введите (1), для просмотра товаров на складе введите (2)'))
-        if val == (1):
-            self.order_info()
-            self.storage_check()
-        elif val == (2):
-            storage.display_products()
-            self.back_values()
+            return self.order_storage()
+    
+    def compare_quantity(self):
+        if order.orderProducts in storage.storageNames:
+            if order.orderSum <= storage.storageNames[order.orderProducts]:
+                print('На складе есть требуемое количество товара')
+                self.confirm_order()
+            else:
+                print('На складе не хватает товаров!')
+                self.order_storage()
         else:
-            return self.values_confirm()
-            
-        
+            print('Товар не найден!')
+    
     def check_confirm(self):
-        print(f"Здравствуйте {manager.manageName}")
-        self.values_confirm()
+        print(f'Здравствуйте {self.manageName}!')
+        val = int(input('Для просмотра и проверки заказа введите (1), для выхода введите (0).'))
+        if val == (0):
+            sys.exit()
+        elif val == (1):
+            print(f'User ID: {user.userId}, Имя заказчика: {user.userName}, Email: {user.userEmail}, Телефон: {user.userPnum}')
+            print(f"Номер заказа: {self.orderNumber}, Товары: {self.orderProducts}, Количество: {self.orderSum}")
+            self.compare_quantity()
+            
+            
              
 manager = Manager()
 manager.check_manageName_length()

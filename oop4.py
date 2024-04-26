@@ -85,7 +85,7 @@ class Order:
         val = int(input('Вы подтверждаете заказ? (1 - Да, 0 - Нет)'))
         if val == (1):
             print('Заказ оформлен')
-            print(f'User ID: {user.userId}, Имя заказчика: {user.userName}, Email: {user.userEmail}, Телефон: {user.userPnum}')
+            #print(f'User ID: {user.userId}, Имя заказчика: {user.userName}, Email: {user.userEmail}, Телефон: {user.userPnum}')
             print(f"Номер заказа: {self.orderNumber}, Товары: {self.orderProducts}, Количество: {self.orderSum}")
         elif val == (0):
             print('Заказ отменён')
@@ -99,8 +99,14 @@ order.check_orderSum()
 order.display_order_info()
 
 class Manager:
-    def prikol_cyka(self):
-        print(f'Order Number: {order.orderNumber}, Products: {order.orderProducts}, Sum: {order.orderSum}')
-            
+    def compare_quantity(self):
+        if order.orderProducts in storage.storageNames:
+            if order.orderSum <= storage.storageNames[order.orderProducts]:
+                print('The requested quantity is available in storage.')
+            else:
+                print('Insufficient quantity available in storage.')
+        else:
+            print('Product not found in storage.')
+
 manager = Manager()
-manager.prikol_cyka()
+manager.compare_quantity()
