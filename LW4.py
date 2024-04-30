@@ -41,22 +41,13 @@ class User:
         print(f"Email: {self.userEmail}")
         print("Номер телефона: +7", (self.userPnum))
 
-user = User()
-user.check_userName_length()
-user.check_userEmail_length()
-user.check_userPnum_length()
-user.display_user_info()
-
-
 class Product:
     productId = random.randint(1, 99999999)
     productName = ""
     
     def __init__(self, name):
         self.productId = random.randint(1, 99999999)
-        self.productName = name
-    
-        
+        self.productName = name    
 
 class Storage:
     storageList = {}
@@ -81,19 +72,6 @@ class Storage:
     def display_products(self):
         for product_id, data in self.storageList.items():
             print(f'Product ID: {product_id}, Product Name: {data[1]}, Quantity: {data[0]}')
-
-
-product1 = Product("Монитор")
-product2 = Product("Клавиатура")
-
-storage = Storage()
-storage.add_product(product1, 10)
-storage.add_product(product2, 100)
-storage.add_product(product1, 40)
-storage.add_product2(product1, 10)
-storage.add_product2(product2, 100)
-storage.add_product2(product1, 40)
-storage.display_products()
      
 class Order:
     orderNumber = random.randint(1, 99999999)
@@ -106,6 +84,7 @@ class Order:
       self.orderProducts = ''
       self.orderSum = ''
       self.orderNumber = random.randint(1, 99999999)
+      self.orderList = {}
       
     def add_orderProducts(self):
         val = input('Введите название товара:')
@@ -123,23 +102,26 @@ class Order:
         else:
             print('Такого количества товара нет!')
             return self.check_orderSum()
-       
-    def display_order_info(self):
-        val = int(input('Вы подтверждаете заказ? (1 - Да, 0 - Нет)'))
+        
+    def agree_order(self):
+        val = int(input('(1) - Подтвердить заказ, (0) - Отменить заказ'))
         if val == (1):
-            print('Заказ оформлен')
-            print(f'User ID: {user.userId}, Имя заказчика: {user.userName}, Email: {user.userEmail}, Телефон: {user.userPnum}')
-            print(f"Номер заказа: {self.orderNumber}, Товары: {self.orderProducts}, Количество: {self.orderSum}")
+            print('Заказ оформлен!')
+            self.display_order_info()
         elif val == (0):
             print('Заказ отменён')
-            sys.exit()
+            not self.add_orderList()
         else:
-            return self.display_order_info()    
-            
-order = Order()
-order.add_orderProducts()
-order.check_orderSum()
-order.display_order_info()
+            return self.agree_order()
+    
+    def add_orderList(self, user):
+        if user.userName in self.orderList:
+            self.orderList[user.userName] += [user.userId, self.orderProducts, self.orderNumber, self.orderSum]
+        else:
+            self.orderList[user.userName] = [user.userId, self.orderProducts, self.orderNumber, self.orderSum]         
+    
+    def display_order_info(self):
+        print(self.orderList)
 
 class Manager:
     manageName = ""
@@ -235,7 +217,40 @@ class Manager:
             print(f"Номер заказа: {order.orderNumber}, Товары: {order.orderProducts}, Количество: {order.orderSum}")
             self.compare_quantity()
             
-            
+user1 = User()
+user1.check_userName_length()
+user1.check_userEmail_length()
+user1.check_userPnum_length()
+user1.display_user_info()
+
+user2 = User()
+user2.check_userName_length()
+user2.check_userEmail_length()
+user2.check_userPnum_length()
+user2.display_user_info()
+
+product1 = Product("Монитор")
+product2 = Product("Клавиатура")
+
+storage = Storage()
+storage.add_product(product1, 10)
+storage.add_product(product2, 100)
+storage.add_product(product1, 40)
+storage.add_product2(product1, 10)
+storage.add_product2(product2, 100)
+storage.add_product2(product1, 40)
+storage.display_products()    
+
+order = Order()
+order.add_orderProducts()
+order.check_orderSum()
+order.agree_order()
+order.add_orderList(user1)
+order.add_orderProducts()
+order.check_orderSum()
+order.agree_order()
+order.add_orderList(user2)
+order.display_order_info()          
              
 manager = Manager()
 manager.check_manageName_length()
