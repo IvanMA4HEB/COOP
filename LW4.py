@@ -78,6 +78,7 @@ class Order:
     orderSum = ''
     orderList = {}
     orderProducts = ''
+    orderVal = int()
     
     def __init__(self):
     #Оформление Заказа на площадке 
@@ -85,6 +86,7 @@ class Order:
       self.orderSum = ''
       self.orderNumber = random.randint(1, 99999999)
       self.orderList = {}
+      self.orderVal = int()
       
     def add_orderProducts(self):
         val = input('Введите название товара:')
@@ -107,18 +109,21 @@ class Order:
         val = int(input('(1) - Подтвердить заказ, (0) - Отменить заказ'))
         if val == (1):
             print('Заказ оформлен!')
-            self.display_order_info()
+            self.orderVal = val
         elif val == (0):
             print('Заказ отменён')
-            not self.add_orderList()
+            self.orderVal = val       
         else:
             return self.agree_order()
     
     def add_orderList(self, user):
-        if user.userName in self.orderList:
-            self.orderList[user.userName] += [user.userId, self.orderProducts, self.orderNumber, self.orderSum]
-        else:
-            self.orderList[user.userName] = [user.userId, self.orderProducts, self.orderNumber, self.orderSum]         
+        if self.orderVal == (1):
+            if user.userName in self.orderList:
+                self.orderList[user.userName] += [user.userId, self.orderProducts, self.orderNumber, self.orderSum]
+            else:
+                self.orderList[user.userName] = [user.userId, self.orderProducts, self.orderNumber, self.orderSum]
+        elif self.orderVal == (0):
+            pass         
     
     def display_order_info(self):
         print(self.orderList)
