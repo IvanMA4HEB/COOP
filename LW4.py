@@ -74,7 +74,6 @@ class Storage:
             print(f'Product ID: {product_id}, Product Name: {data[1]}, Quantity: {data[0]}')
      
 class Order:
-    orderNumber = random.randint(1, 99999999)
     orderSum = ''
     orderList = {}
     orderProducts = ''
@@ -84,7 +83,6 @@ class Order:
     #Оформление Заказа на площадке 
       self.orderProducts = ''
       self.orderSum = ''
-      self.orderNumber = random.randint(1, 99999999)
       self.orderList = {}
       self.orderVal = int()
       
@@ -119,14 +117,15 @@ class Order:
     def add_orderList(self, user):
         if self.orderVal == (1):
             if user.userName in self.orderList:
-                self.orderList[user.userName] += [user.userId, self.orderProducts, self.orderNumber, self.orderSum]
+                self.orderList[user.userName] += [user.userId, self.orderProducts, self.orderSum]
             else:
-                self.orderList[user.userName] = [user.userId, self.orderProducts, self.orderNumber, self.orderSum]
+                self.orderList[user.userName] = [user.userId, self.orderProducts, self.orderSum]
         elif self.orderVal == (0):
             pass         
     
     def display_order_info(self):
-        print(self.orderList)
+        for user, data in self.orderList.items():
+            print(f'Имя заказчика: {user}, ID Заказчика: {data[0]}, Товары: {data[1]}, Количество: {data[2]}')
 
 class Manager:
     manageName = ""
@@ -168,59 +167,31 @@ class Manager:
         print(f"Email: {self.manageEmail}")
         print("Номер телефона: +7", (self.managePnum))
     
-    def confirm_order(self):
-        con = int(input('(1) - Подтвердить заказ, (0) - Не подтверждать'))
-        if con == (0):
-            print('Заказ не подтверждён')
-            sys.exit()
-        elif con == (1):
-            print('Заказ подтверждён')
-            print(f'User ID: {user.userId}, Имя заказчика: {user.userName}, Email: {user.userEmail}, Телефон: {user.userPnum}')
-            print(f"Номер заказа: {order.orderNumber}, Товары: {order.orderProducts}, Количество: {order.orderSum}")
-            sys.exit()
-        else:
-            return self.confirm_order()
-    
-    def sum_products(self):
-        val = int(input('Введите количество товара:'))
-        if val <= (0):
-            print('Недопустимое значение!')
-            return self.sum_products()
-        elif val > (0):
-            print(F'{val} единиц(-а) товара заказано на склад.')
-            self.confirm_order()
-        else:
-            return self.sum_products()
-    
-    def order_storage(self):
-        sto = int(input('(1) - Заказать товар на склад, (0) - Отмена'))
-        if sto == (0):
-            sys.exit()
-        elif sto == (1):
-            self.sum_products()
-        else:
-            return self.order_storage()
-    
-    def compare_quantity(self):
+    def show_check_order(self):
+        order1.display_order_info()
+        self.check_order(order1)
+        order2.display_order_info()
+        self.check_order(order2)
+        
+    def check_order(self, order):
         if order.orderProducts in storage.storageNames:
             if order.orderSum <= storage.storageNames[order.orderProducts]:
                 print('На складе есть требуемое количество товара')
-                self.confirm_order()
             else:
                 print('На складе не хватает товаров!')
-                self.order_storage()
         else:
             print('Товар не найден!')
+
     
-    def check_confirm(self):
+    def hello_manager(self):
         print(f'Здравствуйте {self.manageName}!')
-        val = int(input('Для просмотра и проверки заказа введите (1), для выхода введите (0).'))
+        val = int(input('(1) - Просмотр заказов, (0) - Закрыть'))
         if val == (0):
             sys.exit()
         elif val == (1):
-            print(f'User ID: {user.userId}, Имя заказчика: {user.userName}, Email: {user.userEmail}, Телефон: {user.userPnum}')
-            print(f"Номер заказа: {order.orderNumber}, Товары: {order.orderProducts}, Количество: {order.orderSum}")
-            self.compare_quantity()
+            self.show_check_order()
+        else:
+            return self.hello_manager()
             
 user1 = User()
 user1.check_userName_length()
@@ -246,20 +217,23 @@ storage.add_product2(product2, 100)
 storage.add_product2(product1, 40)
 storage.display_products()    
 
-order = Order()
-order.add_orderProducts()
-order.check_orderSum()
-order.agree_order()
-order.add_orderList(user1)
-order.add_orderProducts()
-order.check_orderSum()
-order.agree_order()
-order.add_orderList(user2)
-order.display_order_info()          
+order1 = Order()
+order1.add_orderProducts()
+order1.check_orderSum()
+order1.agree_order()
+order1.add_orderList(user1)
+order1.display_order_info()
+
+order2 = Order()
+order2.add_orderProducts()
+order2.check_orderSum()
+order2.agree_order()
+order2.add_orderList(user2)
+order2.display_order_info()
              
 manager = Manager()
 manager.check_manageName_length()
 manager.check_manageEmail_length()
 manager.check_managePnum_length()
 manager.display_manager_info()
-manager.check_confirm()
+manager.hello_manager()
