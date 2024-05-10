@@ -169,19 +169,66 @@ class Manager:
     
     def show_check_order(self):
         order1.display_order_info()
-        self.check_order(order1)
+        self.check_order1()
         order2.display_order_info()
-        self.check_order(order2)
+        self.check_order2()
         
-    def check_order(self, order):
-        if order.orderProducts in storage.storageNames:
-            if order.orderSum <= storage.storageNames[order.orderProducts]:
+    def check_order1(self):
+        if order1.orderProducts in storage.storageNames:
+            if order1.orderSum <= storage.storageNames[order1.orderProducts]:
                 print('На складе есть требуемое количество товара')
+                self.confirm_order()
             else:
                 print('На складе не хватает товаров!')
+                self.order_to_storage1()
         else:
             print('Товар не найден!')
 
+    def order_to_storage1(self):
+        print(f'На складе: {storage.storageNames[order1.orderProducts]}')
+        print(f'Заказано: {order1.orderSum}')
+        val = (order1.orderSum) - (storage.storageNames[order1.orderProduct])
+        print(f'Необходимо заказать: {val}')
+        self.end()
+    
+    def check_order2(self):
+        if order2.orderProducts in storage.storageNames:
+            if order2.orderSum <= storage.storageNames[order2.orderProducts]:
+                print('На складе есть требуемое количество товара')
+                self.confirm_order()
+            else:
+                print('На складе не хватает товаров!')
+                self.order_to_storage2()
+        else:
+            print('Товар не найден!')
+
+    def order_to_storage2(self):
+        print(f'На складе: {storage.storageNames[order2.orderProducts]}')
+        print(f'Заказано: {order2.orderSum}')
+        a = int(storage.storageNames[order2.orderProducts])
+        b = int(order2.orderSum)
+        val = ((b) - (a))
+        print(f'Необходимо заказать: {val}')
+        self.end()
+        
+    def end(self):
+        con = int(input('(1) - Заказать товар на склад, (0) - Отмена'))
+        if con == (0):
+            sys.exit()
+        elif con == (1):
+            print('Товар заказан')
+            self.confirm_order()
+        else:
+            return self.end()       
+    
+    def confirm_order(self):
+        val = int(input('(1) - Подтвердить заказ, (0) - Не подтверждать заказ'))
+        if val == (1):
+            print('Заказ подтверждён')
+        elif val == (0):
+            print('Заказ не подтверждён')
+        else:
+            return self.confirm_order()
     
     def hello_manager(self):
         print(f'Здравствуйте {self.manageName}!')

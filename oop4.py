@@ -126,8 +126,120 @@ class Order:
     def display_order_info(self):
         for user, data in self.orderList.items():
             print(f'Имя заказчика: {user}, ID Заказчика: {data[0]}, Товары: {data[1]}, Количество: {data[2]}')
-            print(self.orderList)
 
+class Manager:
+    manageName = ""
+    manageEmail = ""
+    manageId = random.randint(1, 99999999)
+    managePnum = ''
+    
+    def __init__(self):
+        self.manageId = random.randint(1, 99999999)
+        self.manageName = ''
+        self.manageEmail = ''
+        self.managePnum = ''
+        # Данные менеджера
+                     
+    def check_manageName_length(self):
+         val = input("Введите имя менеджера:")
+         if len(val) > 600:
+             print ("Вы превысили число допустимых символов!")
+         else:
+             self.manageName = val
+                
+    def check_manageEmail_length(self):
+          val = input("Введите Email:")
+          if len(val) > 360:
+            print ("Вы превысили число допустимых символов!")
+          else:
+             self.manageEmail = val
+                
+    def check_managePnum_length(self):
+            val = input("Введите номер телефрна +7:")
+            if len(val) > 20:
+                print ("Вы превысили число допустимых символов!")
+            else:
+             self.managePnum = val
+             
+    def display_manager_info(self):
+        print(f"Manager ID: {self.manageId}")
+        print(f"Имя менеджера: {self.manageName}")
+        print(f"Email: {self.manageEmail}")
+        print("Номер телефона: +7", (self.managePnum))
+    
+    def show_check_order(self):
+        order1.display_order_info()
+        self.check_order1()
+        order2.display_order_info()
+        self.check_order2()
+        
+    def check_order1(self):
+        if order1.orderProducts in storage.storageNames:
+            if order1.orderSum <= storage.storageNames[order1.orderProducts]:
+                print('На складе есть требуемое количество товара')
+                self.confirm_order()
+            else:
+                print('На складе не хватает товаров!')
+                self.order_to_storage1()
+        else:
+            print('Товар не найден!')
+
+    def order_to_storage1(self):
+        print(f'На складе: {storage.storageNames[order1.orderProducts]}')
+        print(f'Заказано: {order1.orderSum}')
+        val = (order1.orderSum) - (storage.storageNames[order1.orderProduct])
+        print(f'Необходимо заказать: {val}')
+        self.end()
+    
+    def check_order2(self):
+        if order2.orderProducts in storage.storageNames:
+            if order2.orderSum <= storage.storageNames[order2.orderProducts]:
+                print('На складе есть требуемое количество товара')
+                self.confirm_order()
+            else:
+                print('На складе не хватает товаров!')
+                self.order_to_storage2()
+        else:
+            print('Товар не найден!')
+
+    def order_to_storage2(self):
+        print(f'На складе: {storage.storageNames[order2.orderProducts]}')
+        print(f'Заказано: {order2.orderSum}')
+        a = int(storage.storageNames[order2.orderProducts])
+        b = int(order2.orderSum)
+        val = ((b) - (a))
+        print(f'Необходимо заказать: {val}')
+        self.end()
+        
+    def end(self):
+        con = int(input('(1) - Заказать товар на склад, (0) - Отмена'))
+        if con == (0):
+            sys.exit()
+        elif con == (1):
+            print('Товар заказан')
+            self.confirm_order()
+        else:
+            return self.end()       
+    
+    def confirm_order(self):
+        val = int(input('(1) - Подтвердить заказ, (0) - Не подтверждать заказ'))
+        if val == (1):
+            print('Заказ подтверждён')
+        elif val == (0):
+            print('Заказ не подтверждён')
+        else:
+            return self.confirm_order()
+    
+    def hello_manager(self):
+        print(f'Здравствуйте {self.manageName}!')
+        val = int(input('(1) - Просмотр заказов, (0) - Закрыть'))
+        if val == (0):
+            sys.exit()
+        elif val == (1):
+            self.show_check_order()
+        else:
+            return self.hello_manager()
+            
 user1 = User()
 user1.check_userName_length()
 user1.check_userEmail_length()
@@ -165,3 +277,10 @@ order2.check_orderSum()
 order2.agree_order()
 order2.add_orderList(user2)
 order2.display_order_info()
+             
+manager = Manager()
+manager.check_manageName_length()
+manager.check_manageEmail_length()
+manager.check_managePnum_length()
+manager.display_manager_info()
+manager.hello_manager()
