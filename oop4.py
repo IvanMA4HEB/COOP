@@ -167,46 +167,26 @@ class Manager:
         print(f"Email: {self.manageEmail}")
         print("Номер телефона: +7", (self.managePnum))
     
-    def show_check_order(self):
-        order1.display_order_info()
-        self.check_order1()
-        order2.display_order_info()
-        self.check_order2()
+    def show_check_order(self, order: Order):
+        order.display_order_info(self)
+        self.check_order(order)
         
-    def check_order1(self):
-        if order1.orderProducts in storage.storageNames:
-            if order1.orderSum <= storage.storageNames[order1.orderProducts]:
+    def check_order(self, order: Order):
+        if order.orderProducts in storage.storageNames:
+            if order.orderSum <= storage.storageNames[order.orderProducts]:
                 print('На складе есть требуемое количество товара')
                 self.confirm_order()
             else:
                 print('На складе не хватает товаров!')
-                self.order_to_storage1()
+                self.order_to_storage()
         else:
             print('Товар не найден!')
 
-    def order_to_storage1(self):
-        print(f'На складе: {storage.storageNames[order1.orderProducts]}')
-        print(f'Заказано: {order1.orderSum}')
-        val = (order1.orderSum) - (storage.storageNames[order1.orderProduct])
-        print(f'Необходимо заказать: {val}')
-        self.end()
-    
-    def check_order2(self):
-        if order2.orderProducts in storage.storageNames:
-            if order2.orderSum <= storage.storageNames[order2.orderProducts]:
-                print('На складе есть требуемое количество товара')
-                self.confirm_order()
-            else:
-                print('На складе не хватает товаров!')
-                self.order_to_storage2()
-        else:
-            print('Товар не найден!')
-
-    def order_to_storage2(self):
-        print(f'На складе: {storage.storageNames[order2.orderProducts]}')
-        print(f'Заказано: {order2.orderSum}')
-        a = int(storage.storageNames[order2.orderProducts])
-        b = int(order2.orderSum)
+    def order_to_storage(self, order: Order):
+        print(f'На складе: {storage.storageNames[order.orderProducts]}')
+        print(f'Заказано: {order.orderSum}')
+        a = int(storage.storageNames[order.orderProducts])
+        b = int(order.orderSum)
         val = ((b) - (a))
         print(f'Необходимо заказать: {val}')
         self.end()
@@ -236,7 +216,7 @@ class Manager:
         if val == (0):
             sys.exit()
         elif val == (1):
-            self.show_check_order()
+            self.show_check_order(order = Order)
         else:
             return self.hello_manager()
             
